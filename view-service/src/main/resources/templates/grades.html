@@ -17,7 +17,8 @@
         </thead>
         <tbody>
             <tr th:each="grade : ${grades}">
-                <td th:text="${grade.course.courseCode}"></td>
+                <td th:text="${grade.courseName}"></td>
+                <td th:text="${grade.courseCode}"></td>
                 <td th:text="${grade.courseGrade}"></td>
                 <td th:text="${grade.term}"></td>
                 <td th:text="${grade.year}"></td>
