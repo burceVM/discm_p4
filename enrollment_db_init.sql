@@ -1,0 +1,29 @@
+CREATE DATABASE IF NOT EXISTS enrollment_db;
+CREATE TABLE students (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+);
+CREATE TABLE faculty (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+);
+CREATE TABLE courses (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    course_code VARCHAR(50) NOT NULL UNIQUE,
+    course_name VARCHAR(255) NOT NULL,
+    term VARCHAR(50) NOT NULL
+);
+CREATE TABLE grades (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    course_code VARCHAR(50) NOT NULL,
+    course_grade VARCHAR(10) NOT NULL,
+    term VARCHAR(50) NOT NULL,
+    year INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES students(id) ON DELETE CASCADE,
+    FOREIGN KEY (course_code) REFERENCES courses(course_code) ON DELETE CASCADE
+);
