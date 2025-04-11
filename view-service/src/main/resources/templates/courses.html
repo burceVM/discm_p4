@@ -15,10 +15,10 @@
         </thead>
         <tbody>
             <tr th:each="course : ${courses}"> <!-- gets the courses from the db -->
-                <td th:text="${course.courseCode}"></td>
+                <td th:text="${course.get('name')}"></td>
                 <td>
                     <form th:action="@{/enroll}" method="post">
-                        <input type="hidden" name="courseCode" th:value="${course.courseCode}"/>
+                        <input type="hidden" name="courseCode" th:value="${course.get('name')}"/>
                         <input type="submit" value="Enroll"/>
                     </form>
                 </td>
