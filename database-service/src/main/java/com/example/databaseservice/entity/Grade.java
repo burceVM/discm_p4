@@ -16,12 +16,15 @@ public class Grade {
     private String term;
     private int year;
 
-    public Grade(String courseCode, String courseGrade, String term, int year) {
+    public Grade() {} // no argument constructor because JPA requires it
+
+    public Grade(Long userId, String courseCode, String courseGrade, String term, int year) {
+        this.userId = userId;
         this.courseCode = courseCode;
         this.courseGrade = courseGrade;
         this.term = term;
         this.year = year;
-    }
+    }    
 
     public Long getId() {
         return id;

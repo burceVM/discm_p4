@@ -10,6 +10,8 @@ public class Student {
     private String name;
     private String username;
 
+    public Student() {} // no argument constructor because JPA requires it
+
     public Student(String name, String username) {
         this.name = name;
         this.username = username;

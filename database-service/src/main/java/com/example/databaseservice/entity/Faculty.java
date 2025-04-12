@@ -11,6 +11,8 @@ public class Faculty {
     private String name;
     private String username;
 
+    public Faculty() {} // no argument constructor because JPA requires it
+
     public Faculty(String name, String username) {
         this.name = name;
         this.username = username;

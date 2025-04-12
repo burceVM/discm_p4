@@ -11,6 +11,8 @@ public class Course {
     private String courseName;
     private String term;
     
+    public Course() {} // no argument constructor because JPA requires it
+
     public Course(String courseCode, String courseName, String term) {
         this.courseCode = courseCode;
         this.courseName = courseName;

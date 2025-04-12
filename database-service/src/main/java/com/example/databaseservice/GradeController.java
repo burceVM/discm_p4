@@ -1,31 +1,27 @@
 package com.example.databaseservice;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.databaseservice.entity.Grade;
+import com.example.databaseservice.repository.GradeRepository;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class GradeController {
+
+    private final GradeRepository gradeRepository;
+
+    public GradeController(GradeRepository gradeRepository) {
+        this.gradeRepository = gradeRepository;
+    }
+
     @GetMapping("/grades")
-    public List<Map<String, Object>> getGrades() {
-        // Hardcoding grades response for simplicity
-        return List.of(
-                Map.of(
-                        "courseName", "Mathematics",
-                        "courseCode", "MATH101",
-                        "courseGrade", 85.5,
-                        "term", 1,
-                        "year", 2023
-                ),
-                Map.of(
-                        "courseName", "History",
-                        "courseCode", "HIST202",
-                        "courseGrade", 78.0,
-                        "term", 2,
-                        "year", 2023
-                )
-        );
+    public List<Grade> getGrades() {
+        return gradeRepository.findAll();
+    }
+
+    @GetMapping("/grades/{userId}")
+    public List<Grade> getGradesByUserId(@PathVariable Long userId) {
+        return gradeRepository.findByUserId(userId);
     }
 }
-
