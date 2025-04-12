@@ -6,6 +6,8 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.Date;
 import java.util.UUID;
@@ -18,7 +20,7 @@ public class JWTHandler {
          verifier = JWT.require(algorithm).withIssuer("lozol").build();
     }
 
-    public String returnJWTStringForStudent(String name)
+    public static String returnJWTStringForStudent(String name)
     {
         return JWT.create()
                 .withIssuer("lozol")
@@ -31,7 +33,7 @@ public class JWTHandler {
                 .sign(algorithm);
     }
 
-    public String returnJWTStringForFaculty(String name)
+    public static String returnJWTStringForFaculty(String name)
     {
         return JWT.create()
                 .withIssuer("lozol")
@@ -44,9 +46,10 @@ public class JWTHandler {
                 .sign(algorithm);
     }
 
-    public String returnRole(String token) {
+    public static String returnRole(HttpServletRequest request) {
         try {
-            DecodedJWT decodedJWT = verifier.verify(token);
+            Cookie cookie = getCookie(request);
+            DecodedJWT decodedJWT = verifier.verify(cookie.getValue());
             Claim claim = decodedJWT.getClaim("role");
             String role = claim.asString();
             return role;
@@ -54,6 +57,30 @@ public class JWTHandler {
             System.out.println(e.getMessage());
             return "";
         }
+    }
+    public static String returnUsername(HttpServletRequest request) {
+        try {
+            Cookie cookie = getCookie(request);
+            DecodedJWT decodedJWT = verifier.verify(cookie.getValue());
+            Claim claim = decodedJWT.getClaim("username");
+            String role = claim.asString();
+            return role;
+        } catch (JWTVerificationException e) {
+            System.out.println(e.getMessage());
+            return "";
+        }
+    }
+
+    public static Cookie getCookie(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("token")) {
+                    return cookie;
+                }
+            }
+        }
+        return null;
     }
 
 }

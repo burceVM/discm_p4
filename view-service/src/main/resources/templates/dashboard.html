@@ -1,21 +1,50 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:h="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-top: 0;
+            color: #333333;
+            font-size: 24px;
+        }
+        .link {
+            display: block;
+            margin: 10px 0;
+            text-decoration: none;
+            color: #007bff;
+            font-size: 18px;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h1>don't worry it works. just need to set up login.</h1>
-    <!--<h1>Welcome, <span th:text="${user.name}"></span></h1>
-    <div th:if="${userType == 'student'}">
-        <a href="/courses">View Courses</a>
-        <a href="/grades">View Grades</a>
-    </div>
-    <div th:if="${userType == 'faculty'}">
-        <a href="/upload">Upload Grades</a>
-    </div>
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Logout"/>
-    </form>-->
+<div class="container">
+    <h1>Fault-Tolerant Enrollment System</h1>
+    <div th:if="${role == 'student'}"><a  class="link" href="/courses">View Courses</a> </div>
+    <div th:if="${role == 'student'}"><a class="link" href="/grades">View Grades</a></div>
+    <div th:if="${role == 'faculty'}"><a class="link" href="/faculty/upload">Faculty Grade Upload</a></div>
+    <a class="link" href="/logout">Logout</a>
+</div>
 </body>
 </html>
