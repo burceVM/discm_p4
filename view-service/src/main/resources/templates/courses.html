@@ -9,18 +9,20 @@
 <table>
     <thead>
     <tr>
-        <th>Name</th>
-        <th>Units</th>
+        <th>Course Code</th>
+        <th>Course Name</th>
+        <th>Term</th>
         <th>Action</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="course : ${courses}"> <!-- gets the courses from the db -->
-        <td th:text="${course.get('name')}"></td>
-        <td th:text="${course.get('units')}"></td>
+        <td th:text="${course.get('courseCode')}"></td>
+        <td th:text="${course.get('courseName')}"></td>
+        <td th:text="${course.get('term')}"></td>
         <td>
             <form th:action="@{/enroll}" method="post">
-                <input type="hidden" name="courseCode" th:value="${course.get('name')}"/>
+                <input type="hidden" name="courseCode" th:value="${course.get('courseCode')}"/>
                 <input type="submit" value="Enroll"/>
             </form>
         </td>
