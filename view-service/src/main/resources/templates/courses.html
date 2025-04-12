@@ -16,17 +16,17 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="course : ${courses}"> <!-- gets the courses from the db -->
-        <td th:text="${course.get('courseCode')}"></td>
-        <td th:text="${course.get('courseName')}"></td>
-        <td th:text="${course.get('term')}"></td>
-        <td>
-            <form th:action="@{/enroll}" method="post">
-                <input type="hidden" name="courseCode" th:value="${course.get('courseCode')}"/>
-                <input type="submit" value="Enroll"/>
-            </form>
-        </td>
-    </tr>
+        <tr th:each="course : ${courses}">
+            <td th:text="${course.courseCode}"></td>
+            <td th:text="${course.courseName}"></td>
+            <td th:text="${course.term}"></td>
+            <td>
+                <form th:action="@{/enroll}" method="post">
+                    <input type="hidden" name="courseCode" th:value="${course.courseCode}" />
+                    <input type="submit" value="Enroll"/>
+                </form>
+            </td>
+        </tr>        
     </tbody>
 </table>
 <a href="/">Back to Dashboard</a>
