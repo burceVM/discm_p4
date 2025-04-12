@@ -1,19 +1,50 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-top: 0;
+            color: #333333;
+            font-size: 24px;
+        }
+        .link {
+            display: block;
+            margin: 10px 0;
+            text-decoration: none;
+            color: #007bff;
+            font-size: 18px;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h1>Login</h1>
-    <form th:action="@{/login}" method="post">
-        <div>
-            <label>Username: <input type="text" name="username"/></label>
-        </div>
-        <div>
-            <label>Password: <input type="password" name="password"/></label>
-            <input type="submit" value="Login"/>
-        </div>
-    </form>
+<div class="container">
+    <h1>Fault-Tolerant Enrollment System</h1>
+    <a class="link" href="/courses">View Courses</a>
+    <a class="link" href="/grades">View Grades</a>
+    <a class="link" href="/faculty/upload">Faculty Grade Upload</a>
+    <a class="link" href="/logout">Logout</a>
+</div>
 </body>
 </html>
